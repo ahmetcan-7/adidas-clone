@@ -9,14 +9,20 @@ AOS.init({
 const line = document.querySelector(".line")
 const navUl = document.querySelector(".line ul");
 const navli = document.querySelectorAll(".line li");
-const navAlla = document.querySelectorAll(".line a");
+const nava = document.querySelectorAll(".line a");
 const newli = document.createElement("li");
 var myVar = null;
+var adam;
 
 let copyLi = [];
 navli.forEach((li) => {
+    li.classList.remove("info");
     copyLi.push(li);
 })
+
+console.log(copyLi);
+
+
 //changing information text 
 
 function index() {
@@ -24,48 +30,30 @@ function index() {
 
 
     if (window.outerWidth < 1100) {
-
-
-        defaulta();
-        myVar = setInterval(changea, 3000);
-
-
-
-        function defaulta() {
-
-            newli.appendChild(navAlla[0]);
-            navUl.appendChild(newli);
-
-
-        }
-
-
+        navUl.innerHTML = "";
+        navUl.appendChild(copyLi[0]);
         let i = 1;
-
-        function changea() {
-
-            navUl.removeChild(navUl.lastChild);
-            newli.removeChild(newli.lastChild);
-            newli.appendChild(navAlla[i]);
-            navUl.appendChild(newli);
-
-            i = i + 1;
-
-            if (i == navAlla.length) {
+        adam = setInterval(() => {
+            navUl.innerHTML = "";
+            navUl.appendChild(copyLi[i]);
+            i += 1;
+            if (i == copyLi.length) {
                 i = 0;
             }
 
-
-        }
+        }, 2000);
 
 
     } else {
-        clearInterval(myVar);
+        clearInterval(adam);
         navUl.innerHTML = "";
-        copyLi.forEach((li) => {
+        navli.forEach((li) => {
             navUl.appendChild(li);
         })
-        console.log(navUl);
+
+
+
+
     }
 
 }
